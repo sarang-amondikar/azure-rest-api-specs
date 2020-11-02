@@ -1,0 +1,522 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "2020-11-01",
+		"title": "BillingManagementClient",
+		"description": "Billing client provides access to billing resources for Azure subscriptions."
+	},
+	"host": "management.azure.com",
+	"schemes": [
+		"https"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/subscriptions/{subscriptionId}/providers/Microsoft.Billing/billingProperty/default": {
+			"get": {
+				"tags": [
+					"BillingProperties"
+				],
+				"operationId": "BillingProperty_Get",
+				"description": "Get the billing properties for a subscription. This operation is not supported for billing accounts with agreement type Enterprise Agreement.",
+				"externalDocs": {
+					"url": "https://docs.microsoft.com/en-us/rest/api/billing/"
+				},
+				"x-ms-examples": {
+					"McaBillingProperty": {
+						"$ref": "./examples/McaBillingProperty.json"
+					},
+					"MospBillingProperty": {
+						"$ref": "./examples/MospBillingProperty.json"
+					},
+					"MpaBillingProperty": {
+						"$ref": "./examples/MpaBillingProperty.json"
+					}
+				},
+				"parameters": [{
+						"$ref": "#/parameters/subscriptionIdParameter"
+					},
+					{
+						"$ref": "#/parameters/apiVersionParameter"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK. The request has succeeded.",
+						"schema": {
+							"$ref": "#/definitions/BillingProperty"
+						}
+					},
+					"default": {
+						"description": "Error response describing why the operation failed.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"BillingProperties"
+				],
+				"operationId": "BillingProperty_Update",
+				"description": "Updates the billing property of a subscription. Currently, only cost center can be updated for billing accounts with agreement type Microsoft Customer Agreement. Subscription address can be updated for billing accounts with agreement type Microsoft Online Service Program. Only for country India, GST ID can be updated for billing accounts with agreement type Microsoft Online Service Program",
+				"x-ms-examples": {
+					"UpdateBillingProperty": {
+						"$ref": "./examples/UpdateBillingProperty.json"
+					},
+					"UpdateBillingPropertySubscriptionServiceUsageAddress": {
+						"$ref": "./examples/UpdateBillingPropertySubscriptionServiceUsageAddress.json"
+					},
+					"UpdateBillingPropertyGSTIdForIndia": {
+						"$ref": "./examples/UpdateGSTIdForIndiaProperty.json"
+					}
+				},
+				"parameters": [{
+						"$ref": "#/parameters/subscriptionIdParameter"
+					},
+					{
+						"$ref": "#/parameters/apiVersionParameter"
+					},
+					{
+						"name": "parameters",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/BillingProperty"
+						},
+						"description": "Request parameters that are provided to the update billing property operation."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK. The request has succeeded.",
+						"schema": {
+							"$ref": "#/definitions/BillingProperty"
+						}
+					},
+					"default": {
+						"description": "Error response describing why the operation failed.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"BillingProperty": {
+			"description": "A billing property.",
+			"type": "object",
+			"allOf": [{
+				"$ref": "#/definitions/Resource"
+			}],
+			"properties": {
+				"properties": {
+					"description": "A billing property.",
+					"x-ms-client-flatten": true,
+					"$ref": "#/definitions/BillingPropertyProperties"
+				}
+			}
+		},
+		"BillingPropertyProperties": {
+			"description": "The billing property.",
+			"properties": {
+				"billingAccountAgreementType": {
+					"description": "The signed agreement of the billing account.",
+					"enum": [
+						"MicrosoftCustomerAgreement",
+						"MicrosoftOnlineServicesProgram",
+						"MicrosoftPartnerAgreement"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingAccountAgreementType",
+						"modelAsString": true
+					}
+				},
+				"billingAccountType": {
+					"description": "The type billing account.",
+					"enum": [
+						"Enterprise",
+						"Individual",
+						"Partner",
+						"USDoD",
+						"Reseller",
+						"ClassicPartner",
+						"Internal"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingAccountType",
+						"modelAsString": true
+					}
+				},
+				"billingAccountDisplayName": {
+					"description": "The name of the billing account to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingAccountId": {
+					"description": "The ID of the billing account to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingAccountSoldToCountry": {
+					"description": "Country code for billing account's billing address.",
+					"type": "string"
+				},
+				"freeServicesBenefitEndDate": {
+					"description": "The end date of the free service benefit.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"subscriptionProperties": {
+					"description": "The subscription billing properties.",
+					"$ref": "#/definitions/subscriptionProperties",
+					"readOnly": true
+				},
+				"subscriptionBillingType": {
+					"description": "The type of billing subscription.",
+					"enum": [
+						"Benefit",
+						"Free",
+						"Paid",
+						"PrePaid"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "SubscriptionBillingType",
+						"modelAsString": true
+					}
+				},
+				"subscriptionWorkloadType": {
+					"description": "The Azure workload type of the subscription.",
+					"enum": [
+						"Production",
+						"DevTest",
+						"Internal"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "SubscriptionWorkloadType",
+						"modelAsString": true
+					}
+				}
+			}
+		},
+		"subscriptionProperties": {
+			"description": "The billing subscriptions properties.",
+			"properties": {
+				"mcaSubscriptionProperties": {
+					"description": "The billing properties for Microsoft Customer Agreement subscription.",
+					"$ref": "#/definitions/McaSubscriptionProperties",
+					"readOnly": true
+				},
+				"mospSubscriptionProperties": {
+					"description": "The billing properties for Microsoft Online Service Program subscription.",
+					"$ref": "#/definitions/MospSubscriptionProperties",
+					"readOnly": true
+				},
+				"mpaSubscriptionProperties": {
+					"description": "The billing properties for Microsoft Partner Agreement subscription.",
+					"$ref": "#/definitions/MospSubscriptionProperties",
+					"readOnly": true
+				}
+			}
+		},
+		"mcaSubscriptionProperties": {
+			"description": "The billing properties for Microsoft Customer Agreement subscription.",
+			"properties": {
+				"billingProfileId": {
+					"description": "The ID of the billing profile to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingProfileDisplayName": {
+					"description": "The name of the billing profile to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingProfileStatus": {
+					"description": "The status of the billing profile.",
+					"enum": [
+						"Active",
+						"Disabled",
+						"Warned"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileStatus",
+						"modelAsString": true
+					}
+				},
+				"billingProfileStatusReasonCode": {
+					"description": "Reason for the specified billing profile status.",
+					"enum": [
+						"PastDue",
+						"SpendingLimitReached",
+						"SpendingLimitExpired"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileStatusReasonCode",
+						"modelAsString": true
+					}
+				},
+				"billingProfileSpendingLimit": {
+					"description": "The billing profile spending limit.",
+					"enum": [
+						"Off",
+						"On"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileSpendingLimit",
+						"modelAsString": true
+					}
+				},
+				"costCenter": {
+					"description": "The cost center applied to the subscription.",
+					"type": "string"
+				},
+				"invoiceSectionId": {
+					"description": "The ID of the invoice section to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"invoiceSectionDisplayName": {
+					"description": "The name of the invoice section to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"skuId": {
+					"description": "The sku ID of the Azure plan for the subscription.",
+					"type": "string",
+					"readOnly": true
+				},
+				"skuDescription": {
+					"description": "The sku description of the Azure plan for the subscription.",
+					"type": "string",
+					"readOnly": true
+				},
+				"subscriptionBillingStatus": {
+					"description": "The subscription status.",
+					"enum": [
+						"Active",
+						"Deleted",
+						"Disabled",
+						"PastDue"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "SubscriptionBillingStatus",
+						"modelAsString": true
+					}
+				},
+				"subscriptionBillingStatusReasonDetails": {
+					"description": "The subscription status.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/subscriptionBillingStatusReasonDetails"
+					}
+				}
+			}
+		},
+		"mpaSubscriptionProperties": {
+			"description": "The billing properties for Microsoft Customer Agreement subscription.",
+			"properties": {
+				"billingProfileId": {
+					"description": "The ID of the billing profile to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingProfileDisplayName": {
+					"description": "The name of the billing profile to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"billingProfileStatus": {
+					"description": "The status of the billing profile.",
+					"enum": [
+						"Active",
+						"Disabled",
+						"Warned"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileStatus",
+						"modelAsString": true
+					}
+				},
+				"billingProfileStatusReasonCode": {
+					"description": "Reason for the specified billing profile status.",
+					"enum": [
+						"PastDue",
+						"SpendingLimitReached",
+						"SpendingLimitExpired"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileStatusReasonCode",
+						"modelAsString": true
+					}
+				},
+				"billingProfileSpendingLimit": {
+					"description": "The billing profile spending limit.",
+					"enum": [
+						"Off",
+						"On"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "BillingProfileSpendingLimit",
+						"modelAsString": true
+					}
+				},
+				"costCenter": {
+					"description": "The cost center applied to the subscription.",
+					"type": "string"
+				},
+				"customerId": {
+					"description": "The ID of the customer to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"customerDisplayName": {
+					"description": "The display name of the customer to which the subscription is billed.",
+					"type": "string",
+					"readOnly": true
+				},
+				"skuId": {
+					"description": "The sku ID of the Azure plan for the subscription.",
+					"type": "string",
+					"readOnly": true
+				},
+				"skuDescription": {
+					"description": "The sku description of the Azure plan for the subscription.",
+					"type": "string",
+					"readOnly": true
+				},
+				"subscriptionBillingStatus": {
+					"description": "The subscription status.",
+					"enum": [
+						"Active",
+						"Deleted",
+						"Disabled",
+						"PastDue"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "SubscriptionBillingStatus",
+						"modelAsString": true
+					}
+				},
+				"subscriptionBillingStatusReasonDetails": {
+					"description": "The subscription status.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/subscriptionBillingStatusReasonDetails"
+					}
+				}
+			}
+		},
+		"subscriptionBillingStatusReasonDetails": {
+			"description": "The reasons for state of current billing subscription.",
+			"properties": {
+				"effectiveDate": {
+					"description": "Effective date.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"subscriptionStatusReason": {
+					"description": "The reason for current status of the subscription",
+					"enum": [
+						"Canceled",
+						"PastDue",
+						"SuspiciousActivity",
+						"Other",
+						"Transferred",
+						"PolicyViolation",
+						"SpendingLimitReached",
+						"Expired"
+					],
+					"type": "string",
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "SubscriptionStatusReason",
+						"modelAsString": true
+					}
+				}
+			}
+		},
+		"mospSubscriptionProperties": {
+			"description": "The billing properties for Microsoft Online Service Program subscription.",
+			"properties": {
+				"accountAdminNotificationEmailAddress": {
+					"description": "The notification email address for the account admin.",
+					"type": "string",
+					"readOnly": true
+				},
+				"isAccountAdmin": {
+					"description": "Indicates whether user is the billing account admin for the subscription.",
+					"type": "boolean",
+					"readOnly": true
+				},
+				"subscriptionServiceUsageAddress": {
+					"description": "The address of the individual or organization where service subscription is being used.",
+					"$ref": "#/definitions/AddressDetails"
+				},
+				"subscriptionBillingTaxDetails": {
+					"description": "The tax details of the subscription.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/subscriptionBillingTaxDetails"
+					}
+				}
+			}
+		},
+		"subscriptionBillingTaxDetails": {
+			"description": "The GST tax details of the subscription. Only available for country India",
+			"properties": {
+				"Id": {
+					"description": "Represents Goods Services TaxId.",
+					"type": "string",
+					"readOnly": true
+				},
+				"state": {
+					"description": "Available only for India GST. two digit state code subscription is taxed, e.g. MH, TN",
+					"type": "string",
+					"readOnly": true
+				},
+				"status": {
+					"description": "Tax Exemption status, Valid or Invalid.",
+					"type": "string",
+					"readOnly": true
+				},
+				"type": {
+					"description": "The tax record type, applicable only to India. GSTINID",
+					"type": "string",
+					"readOnly": true
+				}
+			}
+		}
+	}
+}
