@@ -9,9 +9,7 @@
               "SubscriptionTaxDetails":[
                   {
                     "id":"35PQRST1234F2Z4",
-                    "state":"MH",
-                    "status":"Valid",
-                    "type":"GSTINID"
+                    "state":"MH"
                   }
                 ]
             }   
