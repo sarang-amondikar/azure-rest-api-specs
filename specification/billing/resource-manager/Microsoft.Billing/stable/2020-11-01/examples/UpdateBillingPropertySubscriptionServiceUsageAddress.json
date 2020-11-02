@@ -40,25 +40,19 @@
               "MospSubscriptionProperties":{
                 "accountAdminNotificationEmailAddress": "test@contoso.com",
                 "isAccountAdmin": true,
-                "subscriptionServiceUsageAddress":{
+                "subscriptionServiceUsageAddress":{                  
                   "companyName":"",
-                "firstName":"FirstName",
-                "lastName":"LastName",
-                "middleName":"MiddleName",
-                "addressLine1":"Adddress line 1",
-                "addressLine2":"Adddress line 2",
-                "city":"City",
-                "region":"State",
-                "country":"US",
-                "postalCode":"12345"
-                },
-                "subscriptionBillingTaxDetails":{
-                  "id":"123457",
-                  "state":"MH",
-                  "status":"valid",
-                  "type":"GSTINID"
+                  "firstName":"FirstName",
+                  "lastName":"LastName",
+                  "middleName":"MiddleName",
+                  "addressLine1":"Adddress line 1",
+                  "addressLine2":"Adddress line 2",
+                  "city":"City",
+                  "region":"State",
+                  "country":"US",
+                  "postalCode":"12345"
                 }
-            },
+              },
               "subscriptionBillingType":"Free",
               "subscriptionWorkloadType":"Production"
             }         
