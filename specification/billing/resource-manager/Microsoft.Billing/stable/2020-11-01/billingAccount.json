@@ -245,6 +245,7 @@
 					"description": "The current status of the billing account.",
 					"type": "string",
 					"enum": [
+						"Unknown",
 						"Active",
 						"Deleted",
 						"Disabled",
