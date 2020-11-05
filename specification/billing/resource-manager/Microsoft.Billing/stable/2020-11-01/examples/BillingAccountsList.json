@@ -25,7 +25,7 @@
               "properties": {
                 "displayName": "Test Account 2",
                 "agreementType": "MicrosoftCustomerAgreement",
-                "accountStatus": "Active",
+                "accountStatus": "PendingReview",
                 "accountType": "Enterprise",
                 "hasReadAccess": true
               }
@@ -38,7 +38,7 @@
                 "displayName": "Test Account 3",
                 "agreementType": "MicrosoftCustomerAgreement",
                 "accountStatus": "Active",
-                "accountType": "Enterprise",
+                "accountType": "Transferred",
                 "hasReadAccess": true
               }
             }

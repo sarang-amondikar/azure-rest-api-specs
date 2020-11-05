@@ -30,7 +30,10 @@
 					},
 					"BillingAccountsListWithExpandForEnrollmentDetails": {
 						"$ref": "./examples/BillingAccountsListWithExpandForEnrollmentDetails.json"
-					}
+                    },
+                    "LegacyBillingAccountDetails": {
+						"$ref": "./examples/LegacyBillingAccountDetails.json"
+                    }
 				},
 				"operationId": "BillingAccounts_List",
 				"description": "Lists the billing accounts that a user has access to.",
@@ -248,7 +251,9 @@
 						"Expired",
 						"Transferred",
 						"Extended",
-						"Terminated"
+						"Terminated",
+						"PendingReview",
+						"UnderReview"
 					],
 					"readOnly": true,
 					"x-ms-enum": {
