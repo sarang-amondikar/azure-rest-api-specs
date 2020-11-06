@@ -1,6 +1,7 @@
 {
     "parameters": {
-      "api-version": "2020-11-01"
+      "api-version": "2020-11-01",
+      "$expand": "soldTo"
     },
     "responses": {
       "200": {
@@ -15,7 +16,8 @@
                 "accountType": "Individual",
                 "agreementType": "MicrosoftOnlineServicesProgram",                
                 "displayName": "Test Account 1",
-                "hasReadAccess": true,                
+                "hasReadAccess": true,
+                "notificationEmailAddress":"abc@contoso.com",
                 "soldTo": {
                   "companyName": "Contoso",
                   "firstName": "Test",
@@ -29,11 +31,6 @@
                   "country": "US",
                   "email": "abc@contoso.com",
                   "phoneNumber": "000-000-0000"
-                },
-                "billingAccountDetails":{
-                    "mospAccount":{
-                        "notificationEmailAddress":"abc@contoso.com"                        
-                    }
                 }
               }
             }           

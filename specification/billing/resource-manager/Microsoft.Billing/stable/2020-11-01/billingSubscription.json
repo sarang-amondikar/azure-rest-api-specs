@@ -147,7 +147,11 @@
                   "PolicyViolation",
                   "SpendingLimitReached",
                   "Expired"
-                ]
+                ],
+                "x-ms-enum": {
+                  "name": "SubscriptionSuspensionReason",
+                  "modelAsString": true
+                }
               }
             }
         }

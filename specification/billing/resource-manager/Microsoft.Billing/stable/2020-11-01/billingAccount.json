@@ -204,43 +204,6 @@
 		"BillingAccountProperties": {
 			"description": "The properties of the billing account.",
 			"properties": {
-				"displayName": {
-					"description": "The billing account name.",
-					"type": "string"
-				},
-				"soldTo": {
-					"description": "The address of the individual or organization that is responsible for the billing account.",
-					"$ref": "#/definitions/AddressDetails"
-				},
-				"agreementType": {
-					"description": "The type of agreement.",
-					"type": "string",
-					"enum": [
-						"MicrosoftCustomerAgreement",
-						"EnterpriseAgreement",
-						"MicrosoftOnlineServicesProgram",
-						"MicrosoftPartnerAgreement"
-					],
-					"readOnly": true,
-					"x-ms-enum": {
-						"name": "AgreementType",
-						"modelAsString": true
-					}
-				},
-				"accountType": {
-					"description": "The type of customer.",
-					"type": "string",
-					"enum": [
-						"Enterprise",
-						"Individual",
-						"Partner"
-					],
-					"readOnly": true,
-					"x-ms-enum": {
-						"name": "AccountType",
-						"modelAsString": true
-					}
-				},
 				"accountStatus": {
 					"description": "The current status of the billing account.",
 					"type": "string",
@@ -262,77 +225,75 @@
 						"modelAsString": true
 					}
 				},
-				"billingAccountDetails": {
-					"description": "The billing account properties based upon agreement signed by customer.",
-					"$ref": "#/definitions/billingAccountDetails"
+				"accountType": {
+					"description": "The type of customer.",
+					"type": "string",
+					"enum": [
+						"Enterprise",
+						"Individual",
+						"Partner"
+					],
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "AccountType",
+						"modelAsString": true
+					}
 				},
-				"hasReadAccess": {
-					"description": "Indicates whether user has read access to the billing account.",
-					"type": "boolean",
-					"readOnly": true
-				}
-			}
-		},
-		"BillingAccountDetails": {
-			"description": "The billing account property details based upon agreement signed by customer.",
-			"properties": {
-				"mcaAccount": {
-					"description": "The billing account properties for Microsoft Customer Agreement.",
-					"$ref": "#/definitions/McaAccount",
-					"readOnly": true
+				"agreementType": {
+					"description": "The type of agreement.",
+					"type": "string",
+					"enum": [
+						"MicrosoftCustomerAgreement",
+						"EnterpriseAgreement",
+						"MicrosoftOnlineServicesProgram",
+						"MicrosoftPartnerAgreement"
+					],
+					"readOnly": true,
+					"x-ms-enum": {
+						"name": "AgreementType",
+						"modelAsString": true
+					}
 				},
-				"mospAccount": {
-					"description": "The billing account properties for Microsoft Online Services Agreement.",
-					"$ref": "#/definitions/MospAccount",
-					"readOnly": true
-				},
-				"eaAccount": {
-					"description": "The billing account properties for Enterprise Agreement.",
-					"$ref": "#/definitions/EaAccount",
-					"readOnly": true
-				}
-			}
-		},
-		"McaAccount": {
-			"description": "",
-			"properties": {
 				"billingProfiles": {
-					"description": "The billing profiles associated with the billing account. By default this is not populated, unless it's specified in $expand.",
+					"description": "The billing profiles associated with the billing account. By default this is not populated, unless it's specified in $expand. This property is available for agreement type Microsoft Customer Agreement and Microsoft Partner Agreement.",
 					"$ref": "#/definitions/BillingProfilesOnExpand"
-				}
-			}
-		},
-		"MospAccount": {
-			"description": "The billing account properties for Microsoft Online Services Agreement.",
-			"properties": {
-				"notificationEmailAddress": {
-					"description": "Notification email address for legacy account.",
-					"type": "string"
-				}
-			}
-		},
-		"EaAccount": {
-			"description": "The billing account properties for Enterprise Agreement.",
-			"properties": {
-				"enrollmentDetails": {
-					"description": "The details about the associated legacy enrollment. By default this is not populated, unless it's specified in $expand.",
-					"$ref": "#/definitions/Enrollment",
-					"readOnly": true
 				},
 				"departments": {
-					"description": "The departments associated to the enrollment.",
+					"description": "The departments associated to the enrollment. This property is available for agreement type Enterprise Agreement.",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/Department"
 					}
 				},
+				"displayName": {
+					"description": "The billing account name.",
+					"type": "string"
+				},
 				"enrollmentAccounts": {
-					"description": "The accounts associated to the enrollment.",
+					"description": "The accounts associated to the enrollment. This property is available for agreement type Enterprise Agreement.",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/EnrollmentAccount"
 					}
-				}
+				},
+				"enrollmentDetails": {
+					"description": "The details about the associated legacy enrollment. By default this is not populated, unless it's specified in $expand. This property is available for agreement type Enterprise Agreement.",
+					"$ref": "#/definitions/Enrollment",
+					"readOnly": true
+				},
+				"notificationEmailAddress": {
+					"description": "Notification email address for legacy account. This property is available for agreement type Microsoft Online Services Program.",
+					"type": "string"
+				},
+				"hasReadAccess": {
+					"description": "Indicates whether user has read access to the billing account.",
+					"type": "boolean",
+					"readOnly": true
+				},
+				"soldTo": {
+					"description": "The address of the individual or organization that is responsible for the billing account.",
+					"$ref": "#/definitions/AddressDetails"
+				}				
 			}
 		},
 		"Enrollment": {
