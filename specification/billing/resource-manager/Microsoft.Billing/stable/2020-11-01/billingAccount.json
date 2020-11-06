@@ -31,8 +31,8 @@
                     "BillingAccountsListWithExpandForEnrollmentDetails": {
                         "$ref": "./examples/BillingAccountsListWithExpandForEnrollmentDetails.json"
                     },
-                    "LegacyBillingAccountDetails": {
-                        "$ref": "./examples/LegacyBillingAccountDetails.json"
+                    "BillingAccountForLegacyAccountDetails": {
+                        "$ref": "./examples/BillingAccountForLegacyAccountDetails.json"
                     }
                 },
                 "operationId": "BillingAccounts_List",
