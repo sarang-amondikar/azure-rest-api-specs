@@ -1,0 +1,54 @@
+{
+    "parameters": {
+      "api-version": "2020-11-01",
+      "billingAccountName": "00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000",
+      "parameters": {
+        "properties": {
+          "displayName": "Test Account",
+          "soldTo": {
+            "companyName": "Contoso",
+            "firstName": "Test",
+            "lastName": "User",
+            "addressLine1": "Test Address 1",
+            "city": "Redmond",
+            "postalCode": "12345",
+            "region": "WA",
+            "country": "US"
+          }
+        }
+      }
+    },
+    "responses": {
+      "202": {
+        "headers": {
+          "Location": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000/operationResults/patchBillingAccount_00000000-0000-0000-0000-000000000000?api-version=2020-05-01",
+          "Retry-After": "10"
+        }
+      },
+      "200": {
+        "body": {
+          "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000",
+          "name": "00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000",
+          "type": "Microsoft.Billing/billingAccounts",
+          "properties": {
+            "accountStatus": "Active",
+            "accountType": "Enterprise",
+            "agreementType": "MicrosoftCustomerAgreement",
+            "displayName": "Test Account",
+            "hasReadAccess": true,
+            "soldTo": {
+              "companyName": "Contoso",
+              "firstName": "Test",
+              "lastName": "User",
+              "addressLine1": "Test Address 1",
+              "city": "Redmond",
+              "postalCode": "12345",
+              "region": "WA",
+              "country": "US"
+            }
+          }
+        }
+      }
+    }
+  }
+  

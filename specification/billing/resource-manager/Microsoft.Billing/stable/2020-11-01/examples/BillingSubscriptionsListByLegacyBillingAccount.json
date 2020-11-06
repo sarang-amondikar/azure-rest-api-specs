@@ -1,0 +1,52 @@
+{
+    "parameters": {
+      "api-version": "2020-11-01",
+      "billingAccountName": "{billingAccountName}"
+    },
+    "responses": {
+      "200": {
+        "body": {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/BillingAccounts/00000000-0000-0000-0000-000000000000/billingSubscriptions/90000000-0000-0000-0000-000000000000",
+              "name": "90000000-0000-0000-0000-000000000000",
+              "type": "Microsoft.Billing/billingAccounts/billingSubscriptions",
+              "properties": {
+                "displayName": "My subscription",
+                "subscriptionId": "90000000-0000-0000-0000-000000000000",
+                "subscriptionBillingStatus": "Deleted",
+                "suspensionReasons":[
+                    "Canceled",
+                    "SuspiciousActivity"
+                ]
+              }
+            },
+            {
+                "id": "/providers/Microsoft.Billing/BillingAccounts/00000000-0000-0000-0000-000000000000/billingSubscriptions/80000000-0000-0000-0000-000000000000",
+                "name": "80000000-0000-0000-0000-000000000000",
+                "type": "Microsoft.Billing/billingAccounts/billingSubscriptions",
+                "properties": {
+                  "displayName": "My subscription",
+                  "subscriptionId": "80000000-0000-0000-0000-000000000000",
+                  "subscriptionBillingStatus": "Inactive",
+                  "suspensionReasons":[
+                      "PolicyViolation"
+                  ]
+                }
+              },
+            {
+              "id": "/providers/Microsoft.Billing/BillingAccounts/00000000-0000-0000-0000-000000000000/billingSubscriptions/70000000-0000-0000-0000-000000000002",
+              "name": "70000000-0000-0000-0000-000000000002",
+              "type": "Microsoft.Billing/billingAccounts/billingSubscriptions",
+              "properties": {
+                "displayName": "My subscription",
+                  "subscriptionId": "80000000-0000-0000-0000-000000000000",
+                  "subscriptionBillingStatus": "Active"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+  
