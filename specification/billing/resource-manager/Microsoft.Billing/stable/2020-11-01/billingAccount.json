@@ -226,6 +226,18 @@
                         "modelAsString": true
                     }
                 },
+                "accountStatusReasonCode": {
+                    "description": "Reason for the specified billing account status.",
+                    "enum": [
+                      "SuspiciousActivity"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "x-ms-enum": {
+                      "name": "accountStatusReasonCode",
+                      "modelAsString": true
+                    }
+                  },
                 "accountType": {
                     "description": "The type of customer.",
                     "type": "string",
@@ -544,7 +556,9 @@
                     "description": "The status of the billing profile.",
                     "enum": [
                         "Active",
+                        "Deleted",
                         "Disabled",
+                        "UnderReview",
                         "Warned"
                     ],
                     "type": "string",
@@ -559,7 +573,8 @@
                     "enum": [
                         "PastDue",
                         "SpendingLimitReached",
-                        "SpendingLimitExpired"
+                        "SpendingLimitExpired",
+                        "SuspiciousActivity"
                     ],
                     "type": "string",
                     "readOnly": true,

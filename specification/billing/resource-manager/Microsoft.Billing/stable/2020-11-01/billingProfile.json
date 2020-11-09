@@ -204,7 +204,9 @@
                 "description": "The status of the billing profile.",
                 "enum": [
                   "Active",
+                  "Deleted",
                   "Disabled",
+                  "UnderReview",
                   "Warned"
                 ],
                 "type": "string",
@@ -219,7 +221,8 @@
                 "enum": [
                   "PastDue",
                   "SpendingLimitReached",
-                  "SpendingLimitExpired"
+                  "SpendingLimitExpired",
+                  "SuspiciousActivity"
                 ],
                 "type": "string",
                 "readOnly": true,
