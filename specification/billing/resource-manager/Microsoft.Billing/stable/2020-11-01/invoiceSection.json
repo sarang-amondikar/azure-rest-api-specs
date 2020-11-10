@@ -42,8 +42,8 @@
             "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "name": "$includeDeleted",
-            "description": "May be used to include deleted invoice sections.",
+            "name": "$includeAll",
+            "description": "May be used to include filtered out invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -284,7 +284,6 @@
           "type": "string",
           "enum": [
             "Active",
-            "Deleted",
             "Disabled",
             "Restricted",
             "UnderReview",

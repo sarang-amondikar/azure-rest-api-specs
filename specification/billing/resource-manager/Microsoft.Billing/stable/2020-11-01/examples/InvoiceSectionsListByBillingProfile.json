@@ -2,7 +2,12 @@
     "parameters": {
         "api-version": "2020-11-01",
         "billingAccountName": "{billingAccountName}",
-        "billingProfileName": "{billingProfileName}"
+        "billingProfileName": "{billingProfileName}",
+        "parameters": {
+            "properties": {
+              "includeAll": "true"
+            }
+          }
     },
     "responses": {
         "200": {
@@ -33,7 +38,6 @@
                                 "costCategory": "Marketing"
                             },
                             "state": "Disabled",
-                            "statusReasonCode": "SuspiciousActivity",
                             "systemId": "YY1X-BBAA-XXX-ZZZ",
                             "targetCloud": "USSec"
                         }

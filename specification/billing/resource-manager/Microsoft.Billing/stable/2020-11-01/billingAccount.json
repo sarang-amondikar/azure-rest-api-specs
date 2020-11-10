@@ -558,8 +558,7 @@
                         "Active",
                         "Deleted",
                         "Disabled",
-                        "UnderReview",
-                        "Warned"
+                        "UnderReview"
                     ],
                     "type": "string",
                     "readOnly": true,

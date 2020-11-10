@@ -46,8 +46,8 @@
                   "type": "string"
                 },
                 {
-                  "name": "$includeDeleted",
-                  "description": "May be used to include deleted billing profiles.",
+                  "name": "$includeAll",
+                  "description": "May be used to include filtered out billing profiles.",
                   "in": "query",
                   "required": false,
                   "type": "string"
@@ -260,9 +260,7 @@
                 "description": "The status of the billing profile.",
                 "enum": [
                   "Active",
-                  "Deleted",
                   "Disabled",
-                  "UnderReview",
                   "Warned"
                 ],
                 "type": "string",
