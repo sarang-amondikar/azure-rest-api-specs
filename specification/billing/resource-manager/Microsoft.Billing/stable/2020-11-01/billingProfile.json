@@ -275,8 +275,7 @@
                 "enum": [
                   "PastDue",
                   "SpendingLimitReached",
-                  "SpendingLimitExpired",
-                  "SuspiciousActivity"
+                  "SpendingLimitExpired"
                 ],
                 "type": "string",
                 "readOnly": true,

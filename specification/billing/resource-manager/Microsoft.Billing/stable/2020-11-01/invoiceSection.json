@@ -285,26 +285,11 @@
           "enum": [
             "Active",
             "Disabled",
-            "Restricted",
-            "UnderReview",
-            "Warned"
+            "Restricted"
           ],
           "readOnly": true,
           "x-ms-enum": {
             "name": "InvoiceSectionState",
-            "modelAsString": true
-          }
-        },
-        "statusReasonCode": {
-          "description": "Reason for the specified invoice section state.",
-          "enum": [
-            "PastDue",
-            "SuspiciousActivity"
-          ],
-          "type": "string",
-          "readOnly": true,
-          "x-ms-enum": {
-            "name": "StatusReasonCode",
             "modelAsString": true
           }
         },
