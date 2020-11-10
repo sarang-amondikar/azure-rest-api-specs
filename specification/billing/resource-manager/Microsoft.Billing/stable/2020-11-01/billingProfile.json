@@ -44,6 +44,13 @@
                   "in": "query",
                   "required": false,
                   "type": "string"
+                },
+                {
+                  "name": "$includeDeleted",
+                  "description": "May be used to include deleted billing profiles.",
+                  "in": "query",
+                  "required": false,
+                  "type": "string"
                 }
               ],
               "responses": {
@@ -96,6 +103,55 @@
                   "in": "query",
                   "required": false,
                   "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK. The request has succeeded.",
+                  "schema": {
+                    "$ref": "#/definitions/BillingProfile"
+                  }
+                },
+                "default": {
+                  "description": "Error response describing why the operation failed.",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "patch": {
+              "tags": [
+                "BillingProfiles"
+              ],
+              "x-ms-examples": {
+                "BillingProfile": {
+                  "$ref": "./examples/UpdateBillingProfile.json"
+                }
+              },
+              "operationId": "BillingProfiles_Update",
+              "description": "Updates the properties of a billing profile. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
+              "externalDocs": {
+                "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
+              },
+              "parameters": [
+                {
+                  "$ref": "#/parameters/apiVersionParameter"
+                },
+                {
+                  "$ref": "#/parameters/billingAccountNameParameter"
+                },
+                {
+                  "$ref": "#/parameters/billingProfileNameParameter"
+                },
+                {
+                  "name": "parameters",
+                  "in": "body",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/BillingProfile"
+                  },
+                  "description": "Request parameters that are provided to update the billing profile."
                 }
               ],
               "responses": {

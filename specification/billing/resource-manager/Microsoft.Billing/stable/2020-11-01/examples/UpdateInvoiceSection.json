@@ -1,0 +1,31 @@
+{
+    "parameters": {
+        "api-version": "2020-11-01",
+        "billingAccountName": "{billingAccountName}",
+        "billingProfileName": "{billingProfileName}",
+        "invoiceSectionName": "{invoiceSectionName}",
+        "parameters": {
+            "properties": {
+                "status": "Disabled"
+            }
+        }
+    },
+    "responses": {
+        "200": {
+            "body": {
+                "id": "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}",
+                "name": "{invoiceSectionName}",
+                "type": "Microsoft.Billing/billingAccounts/billingProfiles/invoiceSections",
+                "properties": {
+                    "displayName": "invoiceSection1",
+                    "labels": {
+                        "pcCode": "A123456",
+                        "costCategory": "Support"
+                    },
+                    "state": "Disabled",
+                    "systemId": "XX1X-XXAA-XXX-ZZZ"
+                }
+            }
+        }
+    }
+}
