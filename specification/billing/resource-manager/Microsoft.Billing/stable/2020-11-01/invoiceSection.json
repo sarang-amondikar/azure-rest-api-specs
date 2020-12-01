@@ -276,7 +276,7 @@
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/InvoiceSectionDeleteEligibilityResult"
+              "$ref": "#/definitions/DeleteInvoiceSectionEligibilityResult"
             }
           },
           "default": {
@@ -381,7 +381,7 @@
         }
       }
     },
-    "InvoiceSectionDeleteEligibilityResult": {
+    "DeleteInvoiceSectionEligibilityResult": {
       "description": "Elibility to delete an invoice section result.",
       "type": "object",
       "properties": {
