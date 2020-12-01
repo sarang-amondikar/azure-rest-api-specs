@@ -354,7 +354,7 @@
             "PastDue",
             "SpendingLimitReached",
             "SpendingLimitExpired",
-            "UnusalActivity"
+            "UnusualActivity"
           ],
           "type": "string",
           "readOnly": true,
@@ -660,7 +660,7 @@
           "type": "string",
           "enum": [
             "PastDue",
-            "UnusalActivity"
+            "UnusualActivity"
           ],
           "readOnly": true,
           "x-ms-enum": {
