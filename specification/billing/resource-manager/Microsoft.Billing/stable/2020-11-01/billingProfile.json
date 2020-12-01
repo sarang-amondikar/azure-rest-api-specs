@@ -43,7 +43,7 @@
           },
           {
             "name": "$expand",
-            "description": "May be used to expand the invoice sections.",
+            "description": "May be used to get deleted billing profiles or expand the invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -98,7 +98,7 @@
           },
           {
             "name": "$expand",
-            "description": "May be used to expand the invoice sections.",
+            "description": "May be used to get deleted billing profile or expand the invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"

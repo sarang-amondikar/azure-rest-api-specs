@@ -40,6 +40,13 @@
           },
           {
             "$ref": "#/parameters/billingProfileNameParameter"
+          },
+          {
+            "name": "$expand",
+            "description": "May be used to get deleted invoice sections.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -88,6 +95,13 @@
           },
           {
             "$ref": "#/parameters/invoiceSectionNameParameter"
+          },
+          {
+            "name": "$expand",
+            "description": "May be used to get deleted invoice section.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
