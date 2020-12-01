@@ -375,12 +375,12 @@
           "description": "Status describing if invoice section is eligible to be deleted.",
           "$ref": "#/definitions/DeleteInvoiceSectionEligibilityStatus"
         },
-        "errorDetails": {
-          "description": "The list of delete invoice section eligibility errors.",
+        "eligibilityDetails": {
+          "description": "The details of delete invoice section eligibility result.",
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/DeleteInvoiceSectionEligibilityErrorDetails"
+            "$ref": "#/definitions/DeleteInvoiceSectionEligibilityDetails"
           }
         }
       }
@@ -397,23 +397,23 @@
         "modelAsString": true
       }
     },
-    "DeleteInvoiceSectionEligibilityErrorDetails": {
+    "DeleteInvoiceSectionEligibilityDetails": {
       "type": "object",
-      "description": "Validation error of delete invoice section eligibility.",
+      "description": "Validation details of delete invoice section eligibility.",
       "properties": {
         "code": {
-          "description": "Error code for the delete invoice section validation.",
-          "$ref": "#/definitions/DeleteInvoiceSectionEligibilityErrorCode"
+          "description": "Code for the delete invoice section validation.",
+          "$ref": "#/definitions/DeleteInvoiceSectionEligibilityCode"
         },
         "message": {
-          "description": "Validation error message.",
+          "description": "Validation message.",
           "type": "string"
         }
       }
     },
-    "DeleteInvoiceSectionEligibilityErrorCode": {
+    "DeleteInvoiceSectionEligibilityCode": {
       "type": "string",
-      "description": "Error code of the delete invoice section eligibilty response.",
+      "description": "Code for the delete invoice section eligibilty response.",
       "enum": [
         "AzureSubscriptions",
         "LastInvoiceSection",
@@ -422,7 +422,7 @@
         "ReservedInstances"
       ],
       "x-ms-enum": {
-        "name": "deleteEligibilityErrorCode",
+        "name": "deleteInvoiceSectionEligibilityCode",
         "modelAsString": true
       }
     },

@@ -9,7 +9,7 @@
     "200": {
       "body": {
         "eligibilityStatus": "NotAllowed",
-        "errorDetails": [
+        "eligibilityDetails": [
           {
             "code": "AzureSubscriptions",
             "message": "There are active or disabled subscriptions assigned to the invoice section. Either move the subscription to another invoice section or delete the subscriptions and then try deleting the invoice section."

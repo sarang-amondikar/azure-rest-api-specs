@@ -8,7 +8,7 @@
     "200": {
       "body": {
         "eligibilityStatus": "NotAllowed",
-        "errorDetails": [
+        "eligibilityDetails": [
           {
             "code": "AzureSubscriptions",
             "message": "Payment method cannot be detached as there are active or disabled azure subscriptions on this billing profile."

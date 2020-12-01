@@ -401,12 +401,12 @@
           "description": "Status describing if billing profile is eligible to be deleted.",
           "$ref": "#/definitions/DeleteBillingProfileEligibilityStatus"
         },
-        "errorDetails": {
-          "description": "The list of delete billing profile eligibility errors.",
+        "eligibilityDetails": {
+          "description": "The details of delete billing profile eligibility result.",
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/DeleteBillingProfileEligibilityErrorDetails"
+            "$ref": "#/definitions/DeleteBillingProfileEligibilityDetails"
           }
         }
       }
@@ -423,23 +423,23 @@
         "modelAsString": true
       }
     },
-    "DeleteBillingProfileEligibilityErrorDetails": {
+    "DeleteBillingProfileEligibilityDetails": {
       "type": "object",
-      "description": "Validation error of delete billing profile eligibility.",
+      "description": "Validation details of delete billing profile eligibility.",
       "properties": {
         "code": {
-          "description": "Error code for the delete billing profile validation.",
-          "$ref": "#/definitions/DeleteBillingProfileEligibilityErrorCode"
+          "description": "Code for the delete billing profile validation.",
+          "$ref": "#/definitions/DeleteBillingProfileEligibilityCode"
         },
         "message": {
-          "description": "Validation error message.",
+          "description": "Validation message.",
           "type": "string"
         }
       }
     },
-    "DeleteBillingProfileEligibilityErrorCode": {
+    "DeleteBillingProfileEligibilityCode": {
       "type": "string",
-      "description": "Error code of the delete invoice section eligibilty response.",
+      "description": "Code of the delete invoice section eligibilty response.",
       "enum": [
         "AzureSubscriptions",
         "LastBillingProfile",
@@ -449,7 +449,7 @@
         "ReservedInstances"
       ],
       "x-ms-enum": {
-        "name": "deleteBillingProfileEligibilityErrorCode",
+        "name": "deleteBillingProfileEligibilityCode",
         "modelAsString": true
       }
     },
