@@ -44,8 +44,7 @@
               "poNumber": "ABC12345",
               "hasReadAccess": true,
               "systemId": "1XXX-11XX-XX1-XXXX-XXX",
-              "status": "Warned",
-              "statusReasonCode": "Active",
+              "status": "Active",
               "spendingLimit": "On",
               "spendingLimitDetails": [
                 {
@@ -70,6 +69,7 @@
                         "pcCode": "A123456",
                         "costCategory": "Support"
                       },
+                      "state": "Active",
                       "systemId": "9XXX-11XX-XX1-XXXX-XXX"
                     }
                   }
@@ -129,6 +129,67 @@
                         "pcCode": "Z223456",
                         "costCategory": "Marketing"
                       },
+                      "state": "Warned",
+                      "reasonCode": "PastDue",
+                      "systemId": "9XXX-22XX-XX1-XXXX-XXX"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/11000000-0000-0000-0000-000000000002",
+            "name": "11000000-0000-0000-0000-000000000002",
+            "type": "Microsoft.Billing/billingAccounts/billingProfiles",
+            "properties": {
+              "displayName": "BillingProfile3",
+              "billTo": {
+                "companyName": "Contoso",
+                "firstName": "Test1",
+                "lastName": "User",
+                "addressLine1": "Test Address1",
+                "addressLine2": "Test Address2",
+                "addressLine3": "Test Address3",
+                "city": "City",
+                "postalCode": "00000",
+                "region": "WA",
+                "country": "US",
+                "email": "abc@contoso.com",
+                "phoneNumber": "000-000-0000"
+              },
+              "currency": "USD",
+              "enabledAzurePlans": [
+                {
+                  "skuId": "0001",
+                  "skuDescription": "Microsoft Azure Plan"
+                },
+                {
+                  "skuId": "0002",
+                  "skuDescription": "Microsoft Azure Plan for DevTest"
+                }
+              ],
+              "invoiceDay": 5,
+              "invoiceEmailOptIn": true,
+              "poNumber": "ABC12345",
+              "hasReadAccess": true,
+              "systemId": "2XXX-22XX-XX1-XXXX-XXX",
+              "status": "Deleted",
+              "spendingLimit": "Off",
+              "invoiceSections": {
+                "hasMoreResults": false,
+                "value": [
+                  {
+                    "id": "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/11000000-0000-0000-0000-000000000001/invoiceSections/invoiceSectionId2",
+                    "name": "invoiceSectionId2",
+                    "type": "Microsoft.Billing/billingAccounts/billingProfiles/invoiceSections",
+                    "properties": {
+                      "displayName": "invoiceSectionName2",
+                      "tags": {
+                        "pcCode": "Z223456",
+                        "costCategory": "Marketing"
+                      },
+                      "state": "Deleted",
                       "systemId": "9XXX-22XX-XX1-XXXX-XXX"
                     }
                   }

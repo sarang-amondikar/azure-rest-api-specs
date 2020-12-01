@@ -118,6 +118,105 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "BillingProfiles"
+        ],
+        "x-ms-examples": {
+          "DeleteBillingProfiles": {
+            "$ref": "./examples/DeleteBillingProfile.json"
+          }
+        },
+        "operationId": "BillingProfiles_Delete",
+        "x-ms-long-running-operation": true,
+        "description": "Deletes a billing profile. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
+        "externalDocs": {
+          "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/billingAccountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/billingProfileNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/BillingProfile"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "Location URI to poll for result",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "Recommended time to wait before making another request to check the status of the operation. The time is specified in seconds.",
+                "type": "integer"
+              }
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/validateDeleteBillingProfileEligibility": {
+      "post": {
+        "tags": [
+          "BillingProfiles"
+        ],
+        "x-ms-examples": {
+          "ValidateDeleteBillingProfileEligibilitySuccess": {
+            "$ref": "./examples/ValidateDeleteBillingProfileEligibilitySuccess.json"
+          },
+          "ValidateDeleteBillingProfileEligibilityFailure": {
+            "$ref": "./examples/ValidateDeleteBillingProfileEligibilityFailure.json"
+          }
+        },
+        "operationId": "BillingProfiles_validatedeletebillingprofileeligibility",
+        "description": "Validates if the billing profile can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
+        "externalDocs": {
+          "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/billingAccountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/billingProfileNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/BillingProfileDeleteEligibilityResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     }
   },
@@ -237,7 +336,9 @@
           "description": "The status of the billing profile.",
           "enum": [
             "Active",
+            "Deleted",
             "Disabled",
+            "UnderReview",
             "Warned"
           ],
           "type": "string",
@@ -252,7 +353,8 @@
           "enum": [
             "PastDue",
             "SpendingLimitReached",
-            "SpendingLimitExpired"
+            "SpendingLimitExpired",
+            "UnusalActivity"
           ],
           "type": "string",
           "readOnly": true,
@@ -289,6 +391,66 @@
             "$ref": "#/definitions/TargetCloud"
           }
         }
+      }
+    },
+    "BillingProfileDeleteEligibilityResult": {
+      "description": "Elibility to delete a billing profile result.",
+      "type": "object",
+      "properties": {
+        "eligibilityStatus": {
+          "description": "Status describing if billing profile is eligible to be deleted.",
+          "$ref": "#/definitions/DeleteBillingProfileEligibilityStatus"
+        },
+        "errorDetails": {
+          "description": "The list of delete billing profile eligibility errors.",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/DeleteBillingProfileEligibilityErrorDetails"
+          }
+        }
+      }
+    },
+    "DeleteBillingProfileEligibilityStatus": {
+      "type": "string",
+      "description": "Validation status of delete billing profile eligibility.",
+      "enum": [
+        "Allowed",
+        "NotAllowed"
+      ],
+      "x-ms-enum": {
+        "name": "deleteBillingProfileEligibilityStatus",
+        "modelAsString": true
+      }
+    },
+    "DeleteBillingProfileEligibilityErrorDetails": {
+      "type": "object",
+      "description": "Validation error of delete billing profile eligibility.",
+      "properties": {
+        "code": {
+          "description": "Error code for the delete billing profile validation.",
+          "$ref": "#/definitions/DeleteBillingProfileEligibilityErrorCode"
+        },
+        "message": {
+          "description": "Validation error message.",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteBillingProfileEligibilityErrorCode": {
+      "type": "string",
+      "description": "Error code of the delete invoice section eligibilty response.",
+      "enum": [
+        "AzureSubscriptions",
+        "LastBillingProfile",
+        "OutstandingCharges",
+        "PendingCharges",
+        "RecurringCharges",
+        "ReservedInstances"
+      ],
+      "x-ms-enum": {
+        "name": "deleteBillingProfileEligibilityErrorCode",
+        "modelAsString": true
       }
     },
     "SpendingLimitDetails": {
@@ -481,11 +643,28 @@
           "type": "string",
           "enum": [
             "Active",
-            "Restricted"
+            "Deleted",
+            "Disabled",
+            "Restricted",
+            "UnderReview",
+            "Warned"
           ],
           "readOnly": true,
           "x-ms-enum": {
             "name": "InvoiceSectionState",
+            "modelAsString": true
+          }
+        },
+        "reasonCode": {
+          "description": "Reason for the specified invoice section status.",
+          "type": "string",
+          "enum": [
+            "PastDue",
+            "UnusalActivity"
+          ],
+          "readOnly": true,
+          "x-ms-enum": {
+            "name": "InvoiceSectionStatusReasonCode",
             "modelAsString": true
           }
         },

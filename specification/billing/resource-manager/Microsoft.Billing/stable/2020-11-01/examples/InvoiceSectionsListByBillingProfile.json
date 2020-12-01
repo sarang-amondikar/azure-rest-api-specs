@@ -36,6 +36,21 @@
               "systemId": "YY1X-BBAA-XXX-ZZZ",
               "targetCloud": "USSec"
             }
+          },
+          {
+            "id": "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/22000000-0000-0000-0000-000000000022",
+            "name": "22000000-0000-0000-0000-000000000022",
+            "type": "Microsoft.Billing/billingAccounts/billingProfiles/invoiceSections",
+            "properties": {
+              "displayName": "invoiceSection3",
+              "labels": {
+                "pcCode": "Z223456",
+                "costCategory": "Marketing"
+              },
+              "state": "Deleted",
+              "systemId": "YY1X-BBAA-XXX-ZZZ",
+              "targetCloud": "USSec"
+            }
           }
         ]
       }

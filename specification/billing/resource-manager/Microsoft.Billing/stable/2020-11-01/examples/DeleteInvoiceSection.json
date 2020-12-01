@@ -1,0 +1,32 @@
+{
+  "parameters": {
+    "api-version": "2020-11-01",
+    "billingAccountName": "{billingAccountName}",
+    "billingProfileName": "{billingProfileName}",
+    "invoiceSectionName": "{invoiceSectionName}"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}",
+        "name": "{invoiceSectionName}",
+        "type": "Microsoft.Billing/billingAccounts/billingProfiles/invoiceSections",
+        "properties": {
+          "displayName": "invoiceSection1",
+          "labels": {
+            "pcCode": "A123456",
+            "costCategory": "Support"
+          },
+          "state": "Deleted",
+          "systemId": "XX1X-XXAA-XXX-ZZZ"
+        }
+      }
+    },
+    "202": {
+      "headers": {
+        "Location": "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/operationResults/deleteInvoiceSection_ed2975a8-8f77-43bb-a717-ace54326b14b?api-version=2020-11-01",
+        "Retry-After": "60"
+      }
+    }
+  }
+}
